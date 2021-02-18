@@ -1,0 +1,79 @@
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{ 
+    "slug": "meg-b550-unify-x",
+    "image": "pexels-miguel-á-padriñán-343457.jpg",
+    "title": "MEG B550 UNIFY-X",
+    "subtitle": "Gaming Motherboard",
+    "content": "string",
+    "excerpt": "string",
+    "price": 15,
+    "categories": ["Monitores", "Partes y Piezas"]
+}
+
+###
+
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{
+    "slug": "wd-black-p10-game-drive-externe",
+    "image": "pexels-pok-rie-1432675.jpg",
+    "title": "WD Black P10 Game Drive Externe",
+    "subtitle": "Festplatte 2 TB, 2,5 Zoll",
+    "content": "Sie können mit bis zu 2 TB alle alten Lieblingsspiele",
+    "excerpt": "Die WD_Black™ P10 Game Drive ist das ideale Zubehör",
+    "price": 74.99,
+    "categories": ["Hard drives", "Computer Parts"]
+}
+
+###
+
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{ 
+    "slug": "sony-playstation-4-500gb-black-fcen",
+    "image": "pexels-valentine-tanasovich-2588757.jpg",
+    "title": "SONY PlayStation 4™ 500GB Black F/CEN",
+    "subtitle": "PlayStation®4 Konsole, DUALSHOCK®4 Wireless-Controller, HDMI™-Kabel, Bedienungsanleitung, USB-Kabel, Netzkabel",
+    "content": "1.84 TFLOPS, AMD Radeon™-Grafik-Engine",
+    "excerpt": "1.84 TFLOPS, AMD Radeon™-Grafik-Engine",
+    "price": 299.99,
+    "categories": ["PlayStation", "Konsoles"]
+}
+
+###
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{
+    "slug": "xiaomi-mi-scooter-1s-e-scooter",
+    "image": "pexels-pok-rie-1432675.jpg",
+    "title": "XIAOMI Mi Scooter 1S E-Scooter",
+    "subtitle": "Klein, Kompakt, E-Mobilität",
+    "content": "Umweltbewusst, lautlos und sparsam, die Mobilität von heute.",
+    "excerpt": "Mit der neuen Straßenzulassung des Mi Scooter 1S können Sie vollkommen frei Ihre Routen wählen.",
+    "price": 366.45,
+    "categories": ["Scooters", "Sport"]
+}
+
+###
+
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{ 
+    "slug": "apple-mvvj2da-macbook-pro-notebook-mit-16-zoll-display-core",
+    "image": "pexels-valentine-tanasovich-2588757.jpg",
+    "title": "APPLE MVVJ2D/A MacBook Pro, Notebook mit 16 Zoll Display, Core™",
+    "subtitle": "i7 Prozessor, 16 GB RAM, 512 GB SSD, Radeon Pro 5300M, Space Grey",
+    "content": "Ob für Business oder Freizeit – Laptops werden vielen Ansprüchen gerecht und können dank Top-Ausstattung mühelos mit Desktop-PCs mithalten. So wie das Notebook APPLE MVVJ2D/A MacBook Pro.Das Notebook ist sofort startbereit, denn das Betriebssystem macOS ist bei Lieferung schon vorinstalliert. Sie müssen anschließend nur noch die Software aufspielen, mit der Sie arbeiten wollen.",
+    "excerpt": "Auf der Suche nach einem Notebook mit robuster Festplatte? Dann sollten Sie sich das Gerät mit SSD-Festplatte genauer ansehen. Diese Festplatte hat eine Speicherkapazität von 512 GB – genügend Platz für all Ihre Fotos, Videos und Dokumente.",
+    "price": 2403.70,
+    "categories": ["Apple", "Laptop"]
+}
+
+###
+GET http://localhost:3000/items/slug/meg-b550-unify-x

@@ -1,0 +1,6 @@
+<mat-toolbar class="search">
+    <mat-form-field>
+      <input #searchBox matInput (keyup.enter)="searchProduct(searchBox.value)" placeholder="Busca lo que quieras">
+      <mat-icon matSuffix class="icon-small">search</mat-icon>
+    </mat-form-field>    
+  </mat-toolbar>

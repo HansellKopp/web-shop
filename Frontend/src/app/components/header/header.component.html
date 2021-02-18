@@ -1,0 +1,49 @@
+<mat-toolbar class="main">   
+      <a routerLink="/home">
+        <div class="logo"></div>
+      </a>
+      <div>
+        <div class="header-caption md-padding">El corotero de Catia</div>
+        <nav>
+          <a routerLink="/home" routerLinkActive="active">Inicio</a>
+          <a routerLink="/checkout" routerLinkActive="active">Pedido</a>
+        </nav>
+        
+      </div>
+      <span class="spacer"></span>
+      <button mat-icon-button class="icon md-padding" aria-label="" routerLink="/checkout">
+          <mat-icon>shopping_cart</mat-icon>
+      </button>
+      <button mat-icon-button class="icon md-padding" aria-label="" routerLink="/checkout">
+        <div *ngIf="auth.user$ | async as user;  else noUser">
+          <img [src]="user.picture"  class="avatar on-hover clickeable"/>
+        </div>
+        <ng-template #noUser>
+          <button mat-icon-button>
+            <mat-icon (click)="auth.loginWithRedirect()">account_circle</mat-icon>
+          </button>
+        </ng-template>
+      </button>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        *ngIf="user"
+        aria-label="Example icon-button with a menu" 
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item  *ngIf="user">
+          <mat-icon>account_circle</mat-icon>
+          <span>{{ user.name }}</span>
+        </button>
+        <button mat-menu-item *ngIf="user">
+          <mat-icon>email</mat-icon>
+          <span>{{ user.email }}</span>
+        </button>
+        <button mat-menu-item (click)="auth.logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+</mat-toolbar>

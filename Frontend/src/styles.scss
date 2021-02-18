@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+    --body-color: #EDF2F4;
+    --accent-color: #ef233c;
+    --accent-darker: #d90429;
+    --primary-background: #2B2D42;
+    --secondary-background: #2B2D42;
+    --light-background: #8D99AE;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: var(--body-color); }
+
+.spacer {
+    flex: 1 1 auto;
+}
+.md-padding {
+    padding: 8px;
+}
+.wrapper {
+    margin-right: auto; 
+    margin-left:  auto; 
+    max-width: 960px; 
+    padding-right: 10px;
+    padding-left:  10px;
+}
+
+.featured-card:hover {
+    transform: translateX(1px) translateY(-3px);    
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+}
+
+.mat-icon:hover {
+    filter: brightness(75%);
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.on-hover:hover {
+   filter: brightness(75%);
+}
+
+.avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+icon {
+  color: snow;  
+}
+
+.icon-small {
+    font-size: 1em;
+    line-height: 1em;
+}
+  
