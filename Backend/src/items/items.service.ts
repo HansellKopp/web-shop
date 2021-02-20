@@ -26,10 +26,6 @@ export class ItemsService {
       : null;
   }
 
-  async findBySlug(slug: string): Promise<Item> {
-      return await this.itemModel.findOne({ slug: slug })
-  }
-
   async create(item: ItemDTO) {
     const newItem = new this.itemModel(item);
     return newItem.save();

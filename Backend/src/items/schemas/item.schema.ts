@@ -1,11 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-@Schema()
+@Schema({
+  timestamps: { createdAt: 'created_at', updatedAt: 'updated_at'}
+})
 export class Item extends Document {
-  @Prop({ type: String, required: true })
-  slug: string;
-
   @Prop({ type: String, required: true })
   title: string;
 
@@ -27,6 +26,8 @@ export class Item extends Document {
   @Prop({ type: Array, required: true })
   categories: Array<string>;
 
+  @Prop({ type: String, required: true, default: 'active'})
+  status: string;
 }
 
 export const ItemSchema = SchemaFactory.createForClass(Item);

@@ -1,6 +1,5 @@
 export interface Item {
   id?: string,
-  slug: string,
   image: string,
   title: string,
   subtitle: string,
@@ -8,4 +7,5 @@ export interface Item {
   content: string,
   price: number,
   categories: Array<string>,
+  status: string
 }

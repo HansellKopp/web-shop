@@ -36,12 +36,6 @@ export class ItemsController {
     return this.itemsService.findById(param.id);
   }
 
-  @Get('/slug/:slug')
-  async findBySlug(@Param() param): Promise<Item> {
-    return this.itemsService.findBySlug(param.slug);
-  }
-
-
   @Post()
   async create(@Body() itemDTO: ItemDTO): Promise<Item> {
     return this.itemsService.create(itemDTO);
