@@ -16,22 +16,12 @@ export class ProductComponent implements OnInit {
     private productsService: ProductsService,
   ) { }
 
-  product : Product = {
-    title: '',
-    subtitle: '',
-    slug: '',
-    image: '',
-    excerpt: '',
-    content: '',
-    price: 0,
-    categories: [],
-
-  }
+  product? : Product
 
   ngOnInit(): void {
     this.route.params.subscribe(path=> {
       if(!path.searchTerm) {
-        this.productsService.getProductBySlug(path.slug).subscribe( val => { this.product = val })
+        this.productsService.getProductById(path.id).subscribe( val => { this.product = val })
       }
     })
   }

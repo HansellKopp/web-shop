@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
 import { UsersService } from 'src/app/services/users.service';
+import { AuthService } from '@auth0/auth0-angular';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -8,10 +8,10 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public auth: AuthService, private users: UsersService) { }
+  constructor(private users: UsersService, public auth: AuthService) { }
 
   user?: any
-  ngOnInit(): void { 
-    this.auth.user$.subscribe(data=> this.user=data)
+  ngOnInit(): void {
+    this.users.getCurrentUser().subscribe(data=> this.user=data)
   }
 }

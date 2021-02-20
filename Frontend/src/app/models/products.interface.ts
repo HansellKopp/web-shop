@@ -1,5 +1,5 @@
 export interface Product {
-    slug?: string,
+    _id?: string,
     image: string,
     title: string,
     subtitle: string,

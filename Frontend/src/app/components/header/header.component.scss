@@ -43,3 +43,13 @@ nav {
     font-size: 1.2em;
   }
 }
+
+.mat-icon {
+  color: snow;  
+}
+
+.mat-menu-item {
+  .mat-icon {
+    color:rgba(0, 0, 0, 0.87);
+  }
+}

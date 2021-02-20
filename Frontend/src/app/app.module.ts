@@ -21,7 +21,6 @@ import { PublishComponent } from './pages/publish/publish.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 import { AuthButtonComponent } from './auth/auth-button/auth-button.component';
-import { AdminComponent } from './pages/admin/admin.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { environment } from 'src/environments/environment'
@@ -43,7 +42,6 @@ import { environment } from 'src/environments/environment'
     PublishComponent,
     UserProfileComponent,
     AuthButtonComponent,
-    AdminComponent,
     ProductsComponent,
     SearchBarComponent
   ],

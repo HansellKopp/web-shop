@@ -1,0 +1,106 @@
+<div class="wrapper mat-elevation-z8">
+    <div class="header">
+        <div class="flex flex-center">
+            <h2>{{ title }}</h2>
+            <div class="spacer" ></div>
+        </div>
+    </div>
+    <form autocomplete="off" [formGroup]="form" (ngSubmit)="save()">
+        <table class="full-width" cellspacing="0">
+            <tr>
+            <td><mat-form-field class="full-width">
+                <mat-label>Title</mat-label>
+                <input matInput
+                    formControlName="title"
+                    [class.is-invalid]="hasErrors('title')"
+                >
+            </mat-form-field></td>
+            <td><mat-form-field class="full-width">
+                <mat-label>Subtitle</mat-label>
+                <input matInput
+                    formControlName="subtitle"
+                    [class.is-invalid]="hasErrors('subtitle')"
+                >
+            </mat-form-field></td>
+            </tr>
+            <tr>
+                <td><mat-form-field class="full-width">
+                    <mat-label>Price</mat-label>
+                    <input matInput
+                        type="number"
+                        formControlName="price"
+                        [class.is-invalid]="hasErrors('price')"
+                    >
+                    <span matSuffix>&nbsp;$</span>
+                </mat-form-field></td>
+                <td>
+
+                <mat-form-field class="full-width">
+                    <mat-label>Categories</mat-label>
+                    <mat-chip-list #categoriesList aria-label="Categories selection">
+                      <mat-chip
+                        *ngFor="let category of categories"
+                        [selectable]="true"
+                        [removable]="true"
+                        (removed)="remove(category)">
+                        {{category}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                      </mat-chip>
+                      <input
+                        placeholder="Category..."
+                        #categoryInput
+                        formControlName="categories"
+                        [matAutocomplete]="auto"
+                        [matChipInputFor]="categoriesList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        (matChipInputTokenEnd)="add($event)">
+                    </mat-chip-list>
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                      <mat-option *ngFor="let category of filteredCategories" [value]="category">
+                        {{category}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><mat-form-field class="full-width">
+                    <mat-label>excerpt</mat-label>
+                    <textarea 
+                        matInput cdkTextareaAutosize
+                        formControlName="excerpt"
+                        [class.is-invalid]="hasErrors('excerpt')"    
+                    ></textarea>  
+                </mat-form-field></td>
+            </tr>
+            <tr>
+                <td colspan="2"><mat-form-field class="full-width">
+                    <mat-label>Image url</mat-label>
+                    <input
+                        matInput cdkTextareaAutosize
+                        formControlName="image"
+                        [class.is-invalid]="hasErrors('image')"    
+                    >
+                </mat-form-field></td>
+            </tr>
+            <tr>
+                <td colspan="2"><mat-form-field class="full-width">
+                    <mat-label>content</mat-label>
+                    <textarea 
+                        matInput cdkTextareaAutosize
+                        formControlName="content"
+                        [class.is-invalid]="hasErrors('content')"    
+                    ></textarea>  
+                </mat-form-field></td>
+            </tr>
+          </table>
+          <div class="action-buttons">
+              <button type="button" 
+                mat-raised-button
+                color="secondary"
+                (click)="cancel()"
+              >Return</button>
+              <button mat-raised-button color="primary">Save</button>
+          </div>
+    </form>
+</div>

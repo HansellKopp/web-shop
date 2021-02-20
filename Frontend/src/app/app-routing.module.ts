@@ -4,7 +4,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { ProductComponent } from './pages/product/product.component';
-import { ADMIN_ROUTES } from 'src/app/pages/admin/admin.routes'
 import { AuthGuard } from './services/auth.guard';
 // import { AuthGuard } from './auth/auth.guard';
 // import { SelectivePreloadingStrategyService } from './selective-preloading-strategy.service';
@@ -16,10 +15,9 @@ const appRoutes: Routes = [
     data: { animation: 'home' }
   },
   {
-    path: 'products/:slug',
+    path: 'products/:id',
     component: ProductComponent,
     data: { animation: 'product' },
-    canActivate: [ AuthGuard ]
   },
   {
     path: 'home/search/:searchTerm',
@@ -29,10 +27,12 @@ const appRoutes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent
+    // canActivate: [ AuthGuard ]
   },
   {
     path: 'admin',
-    children: ADMIN_ROUTES
+    loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule),
+    // canLoad: [AuthGuard]
   },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }

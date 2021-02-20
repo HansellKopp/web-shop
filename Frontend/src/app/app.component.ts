@@ -4,6 +4,7 @@ import { slideInAnimation } from './animations';
 import { Router } from '@angular/router'
 import { MatIconRegistry } from '@angular/material/icon'
 import {DomSanitizer} from '@angular/platform-browser';
+import { UsersService } from 'src/app/services/users.service'
 import { SearchService } from 'src/app/services/search.service'
 import {
   THUMBUP_ICON,
@@ -17,17 +18,18 @@ import {
   animations: [ slideInAnimation ]
 })
 export class AppComponent implements OnInit {
+  currentUser?: string = ''
+
   constructor(
     private router: Router,
     private sanitizer: DomSanitizer,
     private iconRegistry: MatIconRegistry,
-    private search: SearchService
+    private search: SearchService,
+    private users: UsersService
   ) {
      this.loadIcons()
   }
-  title = 'El corotero';
   
-
   getAnimationData(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
@@ -39,8 +41,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.search.getValue().subscribe((term) => {
-      this.router.navigate(['home','search', term])
+    this.search.getValue().subscribe((term: string) => {
+      if(term) this.router.navigate(['home','search', term])
     })
+    this.users.getCurrentUser().subscribe(data=> this.currentUser=data ? data['email'] : '')
   }
 }

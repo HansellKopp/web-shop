@@ -1,5 +1,5 @@
 <app-header></app-header>
-<app-search-bar></app-search-bar>
+<app-search-bar *ngIf="currentUser===''"></app-search-bar>
     <div [@routeAnimation]="getAnimationData(routerOutlet)">
         <router-outlet #routerOutlet="outlet"></router-outlet>
     </div>

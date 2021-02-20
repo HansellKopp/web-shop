@@ -1,0 +1,33 @@
+/* Structure */
+.container {
+    position: relative;
+    min-height: 200px;
+    max-width: 900px;
+    margin: 50px auto 0 auto; 
+}
+h2 {
+   margin: auto 20px;
+}
+.add-button {
+   margin: 10px;
+}
+.table-container {
+    position: relative;
+    max-height: 800px;
+    overflow: auto;
+ }
+  
+ table {
+    width: 100%;
+ }
+  
+/* Column Widths */
+.mat-column-title,
+.mat-column-categories,
+.mat-column-subtitle {
+    max-width: 184px;  
+}
+.mat-column-price, .mat-column-actions {
+  max-width: 84px; 
+}
+ 

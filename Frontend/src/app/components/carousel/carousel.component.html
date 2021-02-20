@@ -1,17 +1,18 @@
 <div class="featured">
     <mat-card class="featured-card" *ngFor="let product of products">
-        <a [routerLink]="['/products', product.title | slug]" routerLinkActive="active">
+        <a [routerLink]="['/products', product._id]" routerLinkActive="active">
             <mat-card-header>
                 <mat-card-title>{{ product.title }}</mat-card-title>
                 <mat-card-subtitle>{{ product.subtitle }}</mat-card-subtitle>
             </mat-card-header>
-            <img mat-card-image class="product-image" src="{{ product.image | assets }}" alt="{{ product.slug }}">
+            <img mat-card-image class="product-image" src="{{ product.image | assets }}" alt="{{ product.title }}">
         </a>
         <mat-card-content>
             <p>{{ product.excerpt }}
             </p>
             <mat-chip-list aria-label="categories">
-                <mat-chip 
+                <mat-chip
+                    color="accent"
                     *ngFor="let category of product.categories"
                     (click)="searchCategory(category)"
                 >{{ category }}</mat-chip>

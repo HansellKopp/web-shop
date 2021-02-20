@@ -7,6 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
+  links = [
+    {
+      'label': 'Categories',
+      'path': ['categories']
+    },
+    {
+      'label': 'Products',
+      'path': ['products']
+    },
+  ]
+
   constructor() { }
 
   ngOnInit(): void {

@@ -3,10 +3,9 @@
   display: flex;
   flex-wrap: wrap;
   .featured-card {
-    background-color: var(--primary-background);
+    background-color: whitesmoke;
     a {
       text-decoration: none;
-      color: snow;
     }
     .product-image {
       width: 100%;
@@ -15,7 +14,6 @@
       object-fit: cover;
     }
     .mat-chip {
-      background-color: var(--accent-color);
       &:hover {
         filter: brightness(85%);
       }
