@@ -5,5 +5,6 @@ export class ItemDTO {
   readonly excerpt: string;
   readonly content: string;
   readonly price: number;
+  readonly images: Array<string>;
   readonly categories: Array<string>;
 }

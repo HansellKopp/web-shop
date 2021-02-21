@@ -2,8 +2,7 @@ POST http://localhost:3000/items
 Content-Type: application/json
 
 { 
-    "slug": "meg-b550-unify-x",
-    "image": "pexels-miguel-á-padriñán-343457.jpg",
+    "images": ["https://res.cloudinary.com/dhkyoab7y/image/upload/v1613928692/product_16116534710dd02d3c11c17a018c9e28ed83b1cf80_ipx9dm.png"],
     "title": "MEG B550 UNIFY-X",
     "subtitle": "Gaming Motherboard",
     "content": "string",
@@ -18,8 +17,7 @@ POST http://localhost:3000/items
 Content-Type: application/json
 
 {
-    "slug": "wd-black-p10-game-drive-externe",
-    "image": "pexels-pok-rie-1432675.jpg",
+    "images": ["https://res.cloudinary.com/dhkyoab7y/image/upload/v1613926206/wd-black-p10-game-drive-externe_d5pq1p.webp"],
     "title": "WD Black P10 Game Drive Externe",
     "subtitle": "Festplatte 2 TB, 2,5 Zoll",
     "content": "Sie können mit bis zu 2 TB alle alten Lieblingsspiele",
@@ -34,8 +32,7 @@ POST http://localhost:3000/items
 Content-Type: application/json
 
 { 
-    "slug": "sony-playstation-4-500gb-black-fcen",
-    "image": "pexels-valentine-tanasovich-2588757.jpg",
+    "images": ["https://res.cloudinary.com/dhkyoab7y/image/upload/v1613926206/sony-playstation-4-500gb-black-fcen_oeet4m.webp"],
     "title": "SONY PlayStation 4™ 500GB Black F/CEN",
     "subtitle": "PlayStation®4 Konsole, DUALSHOCK®4 Wireless-Controller, HDMI™-Kabel, Bedienungsanleitung, USB-Kabel, Netzkabel",
     "content": "1.84 TFLOPS, AMD Radeon™-Grafik-Engine",
@@ -49,8 +46,7 @@ POST http://localhost:3000/items
 Content-Type: application/json
 
 {
-    "slug": "xiaomi-mi-scooter-1s-e-scooter",
-    "image": "pexels-pok-rie-1432675.jpg",
+    "images": ["https://res.cloudinary.com/dhkyoab7y/image/upload/v1613926301/xiaomi-mi-scooter-1s-e-scooter_qutxve.webp"],
     "title": "XIAOMI Mi Scooter 1S E-Scooter",
     "subtitle": "Klein, Kompakt, E-Mobilität",
     "content": "Umweltbewusst, lautlos und sparsam, die Mobilität von heute.",
@@ -65,8 +61,7 @@ POST http://localhost:3000/items
 Content-Type: application/json
 
 { 
-    "slug": "apple-mvvj2da-macbook-pro-notebook-mit-16-zoll-display-core",
-    "image": "pexels-valentine-tanasovich-2588757.jpg",
+    "images": ["https://res.cloudinary.com/dhkyoab7y/image/upload/v1613926303/apple-mvvj2da-macbook-pro-notebook-mit-16-zoll-display-core_o9ka3z.webp"],
     "title": "APPLE MVVJ2D/A MacBook Pro, Notebook mit 16 Zoll Display, Core™",
     "subtitle": "i7 Prozessor, 16 GB RAM, 512 GB SSD, Radeon Pro 5300M, Space Grey",
     "content": "Ob für Business oder Freizeit – Laptops werden vielen Ansprüchen gerecht und können dank Top-Ausstattung mühelos mit Desktop-PCs mithalten. So wie das Notebook APPLE MVVJ2D/A MacBook Pro.Das Notebook ist sofort startbereit, denn das Betriebssystem macOS ist bei Lieferung schon vorinstalliert. Sie müssen anschließend nur noch die Software aufspielen, mit der Sie arbeiten wollen.",

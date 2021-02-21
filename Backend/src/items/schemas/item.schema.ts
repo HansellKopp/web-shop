@@ -20,8 +20,8 @@ export class Item extends Document {
   @Prop({ type: Number, required: true })
   price: number;
 
-  @Prop({ type: String, required: true })
-  image: string;
+  @Prop({ type: Array, required: true })
+  images: Array<string>;
 
   @Prop({ type: Array, required: true })
   categories: Array<string>;

@@ -5,6 +5,7 @@ import { AdminsModule } from './admins/admins.module';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ImagesModule } from './images/images.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -24,6 +25,7 @@ import configuration from './config/configuration';
       }),
       inject: [ConfigService],
     }),
+    ImagesModule,
   ],
   controllers: [],
   providers: [],
