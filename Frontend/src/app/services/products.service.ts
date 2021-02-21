@@ -38,5 +38,8 @@ export class ProductsService {
   deleteProduct(id: string) {
     return this.http.delete('http://localhost:3000/items/' + id)
   }
+  postImages(data: FormData) {
+    return this.http.post('http://localhost:3000/images/upload', data)
+  }
 
 }

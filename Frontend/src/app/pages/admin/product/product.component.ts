@@ -6,6 +6,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductsService } from 'src/app/services/products.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -14,11 +15,13 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductComponent implements OnInit {
 
-  id: string = ''
-  title: string = ''
+  id: string = '';
+  title: string = '';
+  files: File[] = [];
   categories: string[];
-  allCategories: string[]
+  allCategories: string[];
   removable = true;
+  editingImages: boolean = false;
   separatorKeysCodes: number[] = [ENTER, COMMA];
 
   @ViewChild('categoryInput') categoryInput: ElementRef<HTMLInputElement>;
@@ -26,7 +29,7 @@ export class ProductComponent implements OnInit {
 
   form: FormGroup = this.formBuilder.group({
     title: ['', [Validators.required, Validators.minLength(2)]],
-    image: ['', [Validators.required, Validators.minLength(6)]],
+    images: ['', [Validators.required]],
     subtitle: ['', [Validators.required, Validators.minLength(2)]],
     excerpt: ['', [Validators.required, Validators.minLength(6)]],
     content: ['', [Validators.required, Validators.minLength(6)]],
@@ -65,7 +68,6 @@ export class ProductComponent implements OnInit {
               this.id = data._id
               this.title = data.title
               this.form.reset(data)
-              this.categories=Array.isArray(data.categories) ? data.categories: (<string>data.categories).split(',')
             },
             error=> console.log(error)
           )
@@ -84,49 +86,45 @@ export class ProductComponent implements OnInit {
   }
 
   save() {
-    this.form.controls['categories'].setValue(this.categories);
     Object.values(this.form.controls)
     .forEach((control: AbstractControl) => control?.markAllAsTouched());
     if(this.form.invalid) {
       return
     }
-    if(!this.id) {
-      this.products.postProduct(this.form.value)
-                   .subscribe(result=> 
-                      this.openSnackBar('Product successfully created','OK', 
-                      () => {
-                        this.router.navigate(['admin','products'])
-                      })
-                    )
-    } else {
+    let request: Observable<any> = !this.id ?
+      this.products.postProduct(this.form.value) :
       this.products.putProduct(this.id, this.form.value)
-                    .subscribe(result=> 
-                      this.openSnackBar('Product successfully saved','OK', 
-                      () => {
-                        this.router.navigate(['admin','products'])
-                      })
-                    )
-    }
+
+    request.subscribe(()=> 
+      this.openSnackBar('Product successfully saved','OK', 
+      () => this.router.navigate(['admin','products']))
+    )
+
   }
 
   cancel() {
     this.router.navigate(['admin','products'])
   }
 
+  // Categories
   remove(category: string): void {
-    const index = this.categories.indexOf(category);
+    const categories = [...this.form.controls['categories'].value]
+    const index = categories.indexOf(category);
 
     if (index >= 0) {
-      this.categories.splice(index, 1);
+      categories.splice(index, 1);
+      this.form.controls['categories'].setValue([...categories]);
     }
   }
 
   get filteredCategories(): string[] {
-    if(!this.categories) return this.allCategories
+    const categories = [...this.form.controls['categories'].value]
+    if(!categories) return this.allCategories
     return this.allCategories
-                 .filter(x => !this.categories.includes(x))
-                 .concat(this.categories.filter(x => !this.allCategories.includes(x)));
+                 .filter(x => !categories.includes(x))
+                 .concat(categories.filter(x => !this.allCategories.includes(x)));
   }
+
 
   loadCategories() {
     this.allCategories = [
@@ -146,20 +144,43 @@ export class ProductComponent implements OnInit {
         && -1 !== this.allCategories.indexOf(value)
         && -1 === this.categories.indexOf(value)
       ) {
-      this.categories.push(value.trim());
+      this.form.controls['categories'].setValue([...this.categories]);
     }
     if (input) {
       input.value = '';
     }
-    this.form.controls['categories'].setValue(null);
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
     if(-1 === this.categories.indexOf(event.option.viewValue)) {
-      this.categories.push(event.option.viewValue);
+      this.form.controls['categories'].setValue([...this.categories]);
     }
-    this.categoryInput.nativeElement.value = '';
-    this.form.controls['categories'].setValue(null);
+  }
+
+  // images
+  editImages() {
+    if(this.editImages) {
+      const formData = new FormData();
+      for (const file of this.files) {
+        formData.append('files', file);      
+      }
+      let imageRequest: Observable<any> = this.products.postImages( formData )
+    
+      imageRequest.subscribe((response) => {
+        console.log(response);
+        const images = response.map(item=> item['secure_url'])
+        this.form.controls['image'].setValue(images[0]);        
+      })
+    }
+    this.editingImages = !this.editingImages
+  }
+
+  onSelectImage(event) {
+    this.files.push(...event.addedFiles);
+  }
+  
+  onRemoveImage(event) {
+    this.files.splice(this.files.indexOf(event), 1);
   }
 }
 

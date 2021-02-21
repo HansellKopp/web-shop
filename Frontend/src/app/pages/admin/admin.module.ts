@@ -8,7 +8,7 @@ import { ProductsComponent } from './products/products.component';
 import { DepartamentsComponent } from './departaments/departaments.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { ProductComponent } from './product/product.component';
-
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   imports: [
@@ -16,7 +16,8 @@ import { ProductComponent } from './product/product.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    NgxDropzoneModule
   ],
   declarations: [
     AdminComponent,

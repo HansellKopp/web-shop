@@ -27,3 +27,20 @@ td {
   justify-content: flex-end;
   max-width: calc(100% - 16px);
 }
+.dropzone-label {
+  color: snow;
+  text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
+}
+
+.image-preview {
+  height: 160px;
+  border-radius: 5px;
+  background-color: rgba(150, 150, 150, 0.3);
+  img {
+    margin: 10px;
+    max-height: calc(100% - 20px);
+    border-radius: 5px;
+    opacity: 0.8;
+  }
+}
+

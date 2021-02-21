@@ -40,6 +40,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 .flex-center {
     justify-content: center;
 }
+.flex-end {
+    justify-content: flex-end;
+}
 .spacer {
     flex: 1 1 auto;
 }

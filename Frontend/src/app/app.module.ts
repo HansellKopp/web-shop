@@ -24,6 +24,10 @@ import { AuthButtonComponent } from './auth/auth-button/auth-button.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { environment } from 'src/environments/environment'
+import { CloudinaryModule } from '@cloudinary/angular-5.x';
+import * as  Cloudinary from 'cloudinary-core';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+
 
 @NgModule({
   declarations: [
@@ -55,6 +59,10 @@ import { environment } from 'src/environments/environment'
       domain: environment.domain,
       clientId: environment.clientId
     }),
+    CloudinaryModule.forRoot(Cloudinary, { 
+      cloud_name: 'dhkyoab7y'
+    }),
+    NgxDropzoneModule
   ],
   providers: [ProductsService],
   bootstrap: [AppComponent]

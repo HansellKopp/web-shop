@@ -8,6 +8,47 @@
     <form autocomplete="off" [formGroup]="form" (ngSubmit)="save()">
         <table class="full-width" cellspacing="0">
             <tr>
+                <td></td>
+                <td *ngIf="editingImages" class="flex flex-end">
+                    <button mat-button (click)="editImages()"><mat-icon>save</mat-icon></button>
+                </td>
+                <td *ngIf="!editingImages" class="flex flex-end">
+                    <button mat-button (click)="editImages()"><mat-icon>edit</mat-icon></button>
+                </td>
+            </tr>
+            <tr *ngIf="editingImages">
+                <td colSpan="3">
+                <div class="custom-dropzone"
+                    ngx-dropzone 
+                    [accept]="'image/*'"
+                    (change)="onSelectImage($event)"
+                    >
+                    <ngx-dropzone-label>
+                        <div>
+                            <h2>Drop product images here</h2>
+                        </div>
+                    </ngx-dropzone-label>
+                    <ngx-dropzone-image-preview 
+                        (removed)="onRemoveImage(f)"
+                        ngProjectAs="ngx-dropzone-preview" 
+                        *ngFor="let f of files" [file]="f" [removable]="true" 
+                        >
+                        <ngx-dropzone-label class="dropzone-label">{{ f.name | slice : 0 : 10}}</ngx-dropzone-label>
+                    </ngx-dropzone-image-preview>
+                </div>
+                </td>
+            </tr>
+            <tr>
+                <td colSpan="3" *ngIf="!editingImages">
+                <div 
+                    class="image-preview"
+                    *ngFor="let f of [form.controls['images'].value]"
+                >
+                    <img [src]="f" [alt]="f">
+                </div>
+                </td>
+            </tr>
+            <tr>
             <td><mat-form-field class="full-width">
                 <mat-label>Title</mat-label>
                 <input matInput
@@ -39,7 +80,7 @@
                     <mat-label>Categories</mat-label>
                     <mat-chip-list #categoriesList aria-label="Categories selection">
                       <mat-chip
-                        *ngFor="let category of categories"
+                        *ngFor="let category of form.controls['categories'].value"
                         [selectable]="true"
                         [removable]="true"
                         (removed)="remove(category)">
@@ -49,7 +90,6 @@
                       <input
                         placeholder="Category..."
                         #categoryInput
-                        formControlName="categories"
                         [matAutocomplete]="auto"
                         [matChipInputFor]="categoriesList"
                         [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
@@ -73,16 +113,7 @@
                     ></textarea>  
                 </mat-form-field></td>
             </tr>
-            <tr>
-                <td colspan="2"><mat-form-field class="full-width">
-                    <mat-label>Image url</mat-label>
-                    <input
-                        matInput cdkTextareaAutosize
-                        formControlName="image"
-                        [class.is-invalid]="hasErrors('image')"    
-                    >
-                </mat-form-field></td>
-            </tr>
+
             <tr>
                 <td colspan="2"><mat-form-field class="full-width">
                     <mat-label>content</mat-label>
