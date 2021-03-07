@@ -77,7 +77,7 @@ export class ProductComponent implements OnInit {
     }
   }
   logChanges() {
-    this.form.valueChanges.subscribe(data=> console.log(this.form))
+   // this.form.valueChanges.subscribe(data=> console.log(this.form))
   }
 
   hasErrors(p: string) {
@@ -152,8 +152,15 @@ export class ProductComponent implements OnInit {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    if(-1 === this.categories.indexOf(event.option.viewValue)) {
-      this.form.controls['categories'].setValue([...this.categories]);
+    const input = event.option;
+    const value = input.value;
+    const categories = [...this.form.controls['categories'].value]
+    if ((value || '').trim()) {
+      if(-1 === categories.indexOf(value)) { //event.option.viewValue
+        categories.push(value)
+        this.form.controls['categories'].setValue([...categories]);        
+        this.categoryInput.nativeElement.value=''
+      }
     }
   }
 
@@ -164,12 +171,12 @@ export class ProductComponent implements OnInit {
       for (const file of this.files) {
         formData.append('files', file);      
       }
-      let imageRequest: Observable<any> = this.products.postImages( formData )
-    
-      imageRequest.subscribe((response) => {
-        console.log(response);
-        const images = response.map(item=> item['secure_url'])
-        this.form.controls['image'].setValue(images[0]);        
+      let imageRequest: Observable<any> = this.products.postImages( formData )    
+      imageRequest.subscribe((response) => {        
+        const images = response.map(item=> {
+          return item['secure_url']
+        })
+        this.form.controls['images'].setValue(images);        
       })
     }
     this.editingImages = !this.editingImages

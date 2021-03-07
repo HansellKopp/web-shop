@@ -110,3 +110,14 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.logo {
+    margin: 8px 8px 0 0;
+    height: 80px;
+    width: 80px;
+    background: url('assets/images/logo.png') ;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  
+  }
