@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { LoggerModule } from 'src/logger/logger.module';
 import { LoggerService } from 'src/logger/logger.service';
-import { AdminsController } from './Admins.controller';
-import { AdminsService } from './Admins.service';
+import { AdminsController } from './admins.controller';
+import { AdminsService } from './admins.service';
 import { AdminSchema } from './schemas/admin.schema';
 
 @Module({
