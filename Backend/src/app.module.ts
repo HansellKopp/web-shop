@@ -1,11 +1,14 @@
+import { join } from 'path';
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { LoggerModule } from './logger/logger.module';
 import { ItemsModule } from './items/items.module';
 import { UsersModule } from './users/users.module';
 import { AdminsModule } from './admins/admins.module';
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ImagesModule } from './images/images.module';
+import { CategoriesModule } from './categories/categories.module';
 import configuration from './config/configuration';
 
 @Module({
@@ -14,6 +17,8 @@ import configuration from './config/configuration';
     ItemsModule,
     UsersModule,
     AdminsModule,
+    ImagesModule,
+    CategoriesModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [configuration],
@@ -25,7 +30,9 @@ import configuration from './config/configuration';
       }),
       inject: [ConfigService],
     }),
-    ImagesModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'web'),
+    }),
   ],
   controllers: [],
   providers: [],
