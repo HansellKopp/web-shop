@@ -1,3 +1,4 @@
+const fs = require('fs')
 import {
     Post,
     Controller,
@@ -29,10 +30,11 @@ export class ImagesController {
           }),
     )
     async uploadMultipleFiles(@UploadedFiles() files) {
-        const response = []
-        for (const file of files) {
-          const secure_url = await this.imagesService.uploadImage(`./files/${file.filename}`)
-          // TODO remove image after upload
+      const response = []
+      for (const file of files) {
+          const path = `./files/${file.filename}`
+          const secure_url = await this.imagesService.uploadImage(path)
+          fs.unlinkSync(path)
           const fileReponse = {
               originalname: file.originalname,
               filename: file.filename,
