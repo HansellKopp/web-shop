@@ -38,11 +38,11 @@
                 </div>
                 </td>
             </tr>
-            <tr>
-                <td colSpan="3" *ngIf="!editingImages">
+            <tr *ngIf="!editingImages">
+                <td colSpan="3" class="show-images" >
                 <div 
                     class="image-preview"
-                    *ngFor="let f of [form.controls['images'].value]"
+                    *ngFor="let f of form.controls['images'].value"
                 >
                     <img [src]="f" [alt]="f">
                 </div>
